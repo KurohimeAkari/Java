@@ -44,13 +44,28 @@ class frames extends JFrame implements ActionListener{
 
 		/*ぷっしゅ！を押した時の処理！*/
 	public void actionPerformed(ActionEvent e){
-		int a = Integer.valueOf(text.getText()); // text一番目を"a"に代入と数式に戻す
-		int b = Integer.valueOf(text2.getText());
+		int a; 
+		int b;
 		int c;
+		/*もし文字が入れられた処理が行われた場合*/
+		try {
+			a = Integer.valueOf(text.getText());
+			b = Integer.valueOf(text2.getText());
+		} catch (NumberFormatException er) {
+			a = 0;
+			b = 0;
+		}
+		
 		c = a + b ;
-		String Sc = Integer.toString(c); // Cを文字式に戻す
-		System.out.print(c);
-		label.setText(Sc);
+		
+		if (c == 0) {
+			System.out.print("もしかして文字かも？");
+			label.setText("もしかして文字かも？");
+		} else {
+			String Sc = Integer.toString(c); // Cを文字式に戻す
+			System.out.print(c);
+			label.setText(Sc);
+		}
 	}
-
+	
 }
