@@ -8,6 +8,7 @@ class frames extends JFrame implements ActionListener{
 	JTextField[] text = new JTextField[10];
 	JLabel[] label = new JLabel[10];
 	JLabel[] Texlabel = new JLabel[10];
+	JPanel [] p = new JPanel[10]; //Panel(下地呼び出し)
 	JButton button;
 
 	/*基礎を作る宣言*/
@@ -19,30 +20,34 @@ class frames extends JFrame implements ActionListener{
 		frames.setBounds(200,200,fx,fy);
 		frames.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); /*Close処理*/
 	}
+	
 
 	/*中身*/
 	frames(String title){
 		setTitle(title);
 		text[0] = new JTextField("1",5);
 		text[1] = new JTextField("2",5);
-		Texlabel[0] = new JLabel("やっほー");
-		Texlabel[1] = new JLabel("距離");
+		Texlabel[0] = new JLabel("距離");
+		Texlabel[1] = new JLabel("速さ");
 		label[0] = new JLabel();
 		button = new JButton("ぷっしゅ！");
 		button.addActionListener(this);
 		
 		/*テキストエリアとか作る中間宣言*/
-		JPanel p = new JPanel(); //Panel(下地呼び出し)
-		//setLayout(new GridLayout(2,2));
-		p.add(Texlabel[0]);
-		p.add(text[0]);
-		p.add(Texlabel[1]);
-		p.add(text[1]);
-		p.add(button);
+		p[0] = new JPanel(); //Panel(下地呼び出し)
+		p[1] = new JPanel();
+		p[0].setLayout(new GridLayout(2,2));
+		p[0].setPreferredSize(new Dimension(100,100));
+		p[0].add(Texlabel[0]);
+		p[0].add(text[0]);
+		p[0].add(Texlabel[1]);
+		p[0].add(text[1]);
+		p[1].add(button);
 
 		/*ここで設置場所を決める*/
 		Container contentPane = getContentPane();
-		contentPane.add(p,BorderLayout.CENTER);
+		contentPane.add(p[0],BorderLayout.NORTH);
+		contentPane.add(p[1],BorderLayout.CENTER);
 		contentPane.add(label[0],BorderLayout.SOUTH);
 
 	}	
@@ -61,7 +66,7 @@ class frames extends JFrame implements ActionListener{
 			b = 0;
 		}
 		
-		c = a + b ;
+		c = a * b ;
 		
 		if (c == 0) {
 			System.out.print("もしかして文字かも？");
