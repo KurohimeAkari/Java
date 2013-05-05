@@ -24,8 +24,8 @@ class frames extends JFrame implements ActionListener{
 		setTitle(title);
 		JPanel p = new JPanel(); //Panel(下地呼び出し)
 
-		text = new JTextField("1",20);
-		text2 = new JTextField("2",20);
+		text = new JTextField("1",5);
+		text2 = new JTextField("2",5);
 		JButton button = new JButton("ぷっしゅ！");
 		button.addActionListener(this);
 		label = new JLabel();
@@ -44,13 +44,13 @@ class frames extends JFrame implements ActionListener{
 
 		/*ぷっしゅ！を押した時の処理！*/
 	public void actionPerformed(ActionEvent e){
-		//label.setText(text.getText());
-		//System.out.print(text.getText());
 		int a = Integer.valueOf(text.getText()); // text一番目を"a"に代入と数式に戻す
 		int b = Integer.valueOf(text2.getText());
 		int c;
 		c = a + b ;
+		String Sc = Integer.toString(c); // Cを文字式に戻す
 		System.out.print(c);
+		label.setText(Sc);
 	}
 
 }
