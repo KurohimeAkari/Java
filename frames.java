@@ -5,9 +5,10 @@ import java.awt.event.*;
 class frames extends JFrame implements ActionListener{
 
 	/*定義*/
-	JTextField text;
-	JTextField text2;
-	JLabel label;
+	JTextField[] text = new JTextField[10];
+	JLabel[] label = new JLabel[10];
+	JLabel[] Texlabel = new JLabel[10];
+	JButton button;
 
 	/*基礎を作る宣言*/
 	public static void main(String[] args) {
@@ -22,23 +23,27 @@ class frames extends JFrame implements ActionListener{
 	/*中身*/
 	frames(String title){
 		setTitle(title);
-		JPanel p = new JPanel(); //Panel(下地呼び出し)
-
-		text = new JTextField("1",5);
-		text2 = new JTextField("2",5);
-		JButton button = new JButton("ぷっしゅ！");
+		text[0] = new JTextField("1",5);
+		text[1] = new JTextField("2",5);
+		Texlabel[0] = new JLabel("やっほー");
+		Texlabel[1] = new JLabel("距離");
+		label[0] = new JLabel();
+		button = new JButton("ぷっしゅ！");
 		button.addActionListener(this);
-		label = new JLabel();
-
+		
 		/*テキストエリアとか作る中間宣言*/
-		p.add(text);
-		p.add(text2);
+		JPanel p = new JPanel(); //Panel(下地呼び出し)
+		//setLayout(new GridLayout(2,2));
+		p.add(Texlabel[0]);
+		p.add(text[0]);
+		p.add(Texlabel[1]);
+		p.add(text[1]);
 		p.add(button);
 
 		/*ここで設置場所を決める*/
 		Container contentPane = getContentPane();
 		contentPane.add(p,BorderLayout.CENTER);
-		contentPane.add(label,BorderLayout.SOUTH);
+		contentPane.add(label[0],BorderLayout.SOUTH);
 
 	}	
 
@@ -49,8 +54,8 @@ class frames extends JFrame implements ActionListener{
 		int c;
 		/*もし文字が入れられた処理が行われた場合*/
 		try {
-			a = Integer.valueOf(text.getText());
-			b = Integer.valueOf(text2.getText());
+			a = Integer.valueOf(text[0].getText());
+			b = Integer.valueOf(text[1].getText());
 		} catch (NumberFormatException er) {
 			a = 0;
 			b = 0;
@@ -60,11 +65,12 @@ class frames extends JFrame implements ActionListener{
 		
 		if (c == 0) {
 			System.out.print("もしかして文字かも？");
-			label.setText("もしかして文字かも？");
+			label[0].setText("もしかして文字かも？");
 		} else {
+		/*正規ルート*/
 			String Sc = Integer.toString(c); // Cを文字式に戻す
 			System.out.print(c);
-			label.setText(Sc);
+			label[0].setText(Sc);
 		}
 	}
 	
