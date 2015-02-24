@@ -6,6 +6,7 @@ class MouseMove {
 	public static void main(String[] args) {
 		//crick();
 		//point();
+		//move(0,0,1);
 	}
 	// Crickメソッド (function)
 	static void click(){
@@ -37,6 +38,8 @@ class MouseMove {
 		
 			int i = (int)point.getX();
 			int h = (int)point.getY();
+			int prW = moW - i;
+			int prH = moH - h;
 		// move
 		while (!(i == moW && h == moH)) {
 			if (i < moW){
@@ -49,6 +52,36 @@ class MouseMove {
 			}else if (h > moH) {
 				h--;
 			}
+			
+			// 倍加モード
+			// 左から下へ
+			prW = Math.abs(moW - i);
+			prH = Math.abs(moH - h);
+			if (prW > prH && i < moW && h < moH){
+				i++;
+			} else if (prW < prH && i < moW && h < moH){
+				h++;
+			}
+			//右から下へ
+			if (prW > prH && i > moW && h < moH){
+				i--;
+			} else if (prW < prH && i > moW && h < moH){
+				h++;
+			}
+			//左から上へ
+			if (prW > prH && i < moW && h > moH){
+				i++;
+			} else if (prW < prH && i < moW && h > moH){
+				h--;
+			}
+			//右から上へ
+			if (prW > prH && i > moW && h > moH){
+				i--;
+			} else if (prW < prH && i > moW && h > moH){
+				h--;
+			}
+			
+			//System.out.println(prW + "　i:" + i + " " + prH + "　h:" + h);
 			r.mouseMove(i,h);
 			r.delay(moD);
 		}
